@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kuweb-service
+spec:
+  # 지정하지 않으면 기본값 : ClusterIP
+  type: ClusterIP
+  # 서비스에서 pod를 찾기 위한 selector
+  # deployment.yaml의 template에서 label을 따라 참고하면 됨.
+  selector:
+    app: kuweb-label
+  ports:
+  # 서비스에 접근하기 위한 포트
+  - name: kuweb-port
+    # 기본값 : 8080
+    port: 80
+    # pod의 몇번 포트로 접근할지 
+    targetPort: 8080
